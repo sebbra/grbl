@@ -307,10 +307,10 @@
 	#define COOLANT_FLOOD_BIT   7
 	
 	  // Define probe switch input pin.
-	#define PROBE_DDR       DDRC
-	#define PROBE_PIN       PINC
-	#define PROBE_PORT      PORTC
-	#define PROBE_BIT       5  // Uno Analog Pin 5
+	#define PROBE_DDR       DDRB
+	#define PROBE_PIN       PINB
+	#define PROBE_PORT      PORTB
+	#define PROBE_BIT       5 
 	#define PROBE_MASK      (1<<PROBE_BIT)
 
 	// NOTE: All pinouts pins must be on the same port
