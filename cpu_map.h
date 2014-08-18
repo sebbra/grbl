@@ -251,6 +251,81 @@
 
 #endif
 
+
+#ifdef PIN_MAP_CUSTOM_SEBBRA
+  
+	#define ENABLE_SPINDEL_PWM
+	  
+	// Serial port pins
+	#define SERIAL_RX USART_RX_vect
+	#define SERIAL_UDRE USART_UDRE_vect
+  
+	// Define pin-assignments
+	// NOTE: All step bit and direction pins must be on the same port.
+	#define STEP_DDR       DDRC
+	#define STEP_PORT      PORTC
+	#define X_STEP_BIT         0
+	#define Y_STEP_BIT         2 
+	#define Z_STEP_BIT         4 
+	#define STEP_MASK ((1<<X_STEP_BIT)|(1<<Y_STEP_BIT)|(1<<Z_STEP_BIT)) // All step bits
+	
+	#define DIRECTION_DDR	DDRC
+	#define DIRECTION_PORT	PORTC
+	#define X_DIRECTION_BIT    1 
+	#define Y_DIRECTION_BIT    3
+	#define Z_DIRECTION_BIT    5	
+	#define DIRECTION_MASK ((1<<X_DIRECTION_BIT)|(1<<Y_DIRECTION_BIT)|(1<<Z_DIRECTION_BIT)) // All direction bits
+	
+
+	#define STEPPERS_DISABLE_DDR    DDRC
+	#define STEPPERS_DISABLE_PORT   PORTC
+	#define STEPPERS_DISABLE_BIT    6
+	#define STEPPERS_DISABLE_MASK (1<<STEPPERS_DISABLE_BIT)
+
+	// NOTE: All limit bit pins must be on the same port
+	#define LIMIT_DDR       DDRD
+	#define LIMIT_PIN       PIND
+	#define LIMIT_PORT      PORTD
+	#define X_LIMIT_BIT     2
+	#define Y_LIMIT_BIT     3
+	#define Z_LIMIT_BIT     4
+	#define LIMIT_INT       PCIE0  // Pin change interrupt enable pin
+	#define LIMIT_INT_vect  PCINT0_vect 
+	#define LIMIT_PCMSK     PCMSK0 // Pin change interrupt register
+	#define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)) // All limit bits
+
+	#define SPINDLE_ENABLE_DDR   DDRB
+	#define SPINDLE_ENABLE_PORT  PORTB
+	#define SPINDLE_ENABLE_BIT   0
+
+	#define SPINDLE_DIRECTION_DDR   DDRB
+	#define SPINDLE_DIRECTION_PORT  PORTB
+	#define SPINDLE_DIRECTION_BIT   2
+
+	#define COOLANT_FLOOD_DDR   DDRC
+	#define COOLANT_FLOOD_PORT  PORTC
+	#define COOLANT_FLOOD_BIT   7
+	
+	  // Define probe switch input pin.
+	#define PROBE_DDR       DDRC
+	#define PROBE_PIN       PINC
+	#define PROBE_PORT      PORTC
+	#define PROBE_BIT       5  // Uno Analog Pin 5
+	#define PROBE_MASK      (1<<PROBE_BIT)
+
+	// NOTE: All pinouts pins must be on the same port
+	#define PINOUT_DDR       DDRD
+	#define PINOUT_PIN       PIND
+	#define PINOUT_PORT      PORTD
+	#define PIN_RESET        7
+	#define PIN_FEED_HOLD    5
+	#define PIN_CYCLE_START  6
+	#define PINOUT_INT       PCIE1  // Pin change interrupt enable pin
+	#define PINOUT_INT_vect  PCINT1_vect
+	#define PINOUT_PCMSK     PCMSK1 // Pin change interrupt register
+	#define PINOUT_MASK ((1<<PIN_RESET)|(1<<PIN_FEED_HOLD)|(1<<PIN_CYCLE_START))
+	
+#endif
 //----------------------------------------------------------------------------------------
 
 /* 
