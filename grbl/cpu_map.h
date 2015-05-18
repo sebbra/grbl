@@ -269,6 +269,7 @@
 #ifdef PIN_MAP_CUSTOM_SEBBRA
   
 	#define ENABLE_SPINDEL_PWM
+	
 	  
 	// Serial port pins
 	#define SERIAL_RX USART_RX_vect
@@ -278,68 +279,160 @@
 	// NOTE: All step bit and direction pins must be on the same port.
 	#define STEP_DDR       DDRC
 	#define STEP_PORT      PORTC
-	#define X_STEP_BIT         0
-	#define Y_STEP_BIT         2 
-	#define Z_STEP_BIT         4 
+	#define X_STEP_BIT         0  	//  A0
+	#define Y_STEP_BIT         2  	//  A2
+	#define Z_STEP_BIT         4  	//  A4
 	#define STEP_MASK ((1<<X_STEP_BIT)|(1<<Y_STEP_BIT)|(1<<Z_STEP_BIT)) // All step bits
 	
 	#define DIRECTION_DDR	DDRC
 	#define DIRECTION_PORT	PORTC
-	#define X_DIRECTION_BIT    1 
-	#define Y_DIRECTION_BIT    3
-	#define Z_DIRECTION_BIT    5	
+	#define X_DIRECTION_BIT    1 	//  A1
+	#define Y_DIRECTION_BIT    3 	//  A3
+	#define Z_DIRECTION_BIT    5 	//  A5
 	#define DIRECTION_MASK ((1<<X_DIRECTION_BIT)|(1<<Y_DIRECTION_BIT)|(1<<Z_DIRECTION_BIT)) // All direction bits
 	
 
 	#define STEPPERS_DISABLE_DDR    DDRC
 	#define STEPPERS_DISABLE_PORT   PORTC
-	#define STEPPERS_DISABLE_BIT    6
+	#define STEPPERS_DISABLE_BIT    6 	//  A6
 	#define STEPPERS_DISABLE_MASK (1<<STEPPERS_DISABLE_BIT)
 
 	// NOTE: All limit bit pins must be on the same port
 	#define LIMIT_DDR       DDRD
 	#define LIMIT_PIN       PIND
 	#define LIMIT_PORT      PORTD
-	#define X_LIMIT_BIT     2
-	#define Y_LIMIT_BIT     3
-	#define Z_LIMIT_BIT     4
-	#define LIMIT_INT       PCIE0  // Pin change interrupt enable pin
+	#define X_LIMIT_BIT     2 		//  D2
+	#define Y_LIMIT_BIT     3 		//  D3
+	#define Z_LIMIT_BIT     4 		//  D4
+	#define LIMIT_INT       PCIE0   // Pin change interrupt enable pin
 	#define LIMIT_INT_vect  PCINT0_vect 
 	#define LIMIT_PCMSK     PCMSK0 // Pin change interrupt register
 	#define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)) // All limit bits
 
 	#define SPINDLE_ENABLE_DDR   DDRB
 	#define SPINDLE_ENABLE_PORT  PORTB
-	#define SPINDLE_ENABLE_BIT   0
+	#define SPINDLE_ENABLE_BIT   0 		//  D8
 
 	#define SPINDLE_DIRECTION_DDR   DDRB
 	#define SPINDLE_DIRECTION_PORT  PORTB
-	#define SPINDLE_DIRECTION_BIT   2
+	#define SPINDLE_DIRECTION_BIT   2 	//  D10
 
-	#define COOLANT_FLOOD_DDR   DDRC
-	#define COOLANT_FLOOD_PORT  PORTC
-	#define COOLANT_FLOOD_BIT   7
+	#define COOLANT_FLOOD_DDR   DDRB
+	#define COOLANT_FLOOD_PORT  PORTB
+	#define COOLANT_FLOOD_BIT   1  //  D9
 	
 	  // Define probe switch input pin.
-	#define PROBE_DDR       DDRB
-	#define PROBE_PIN       PINB
-	#define PROBE_PORT      PORTB
-	#define PROBE_BIT       5 
+	#define PROBE_DDR       DDRC
+	#define PROBE_PIN       PINC
+	#define PROBE_PORT      PORTC
+	#define PROBE_BIT       7  		//  A7
 	#define PROBE_MASK      (1<<PROBE_BIT)
 
 	// NOTE: All pinouts pins must be on the same port
-	#define PINOUT_DDR       DDRD
-	#define PINOUT_PIN       PIND
-	#define PINOUT_PORT      PORTD
-	#define PIN_RESET        7
-	#define PIN_FEED_HOLD    5
-	#define PIN_CYCLE_START  6
-	#define PINOUT_INT       PCIE1  // Pin change interrupt enable pin
-	#define PINOUT_INT_vect  PCINT1_vect
-	#define PINOUT_PCMSK     PCMSK1 // Pin change interrupt register
-	#define PINOUT_MASK ((1<<PIN_RESET)|(1<<PIN_FEED_HOLD)|(1<<PIN_CYCLE_START))
+	#define CONTROL_DDR       DDRD
+	#define CONTROL_PIN       PIND
+	#define CONTROL_PORT      PORTD
+	#define RESET_BIT        7  		//  D7
+	#define FEED_HOLD_BIT    5  		//  D5
+	#define SAFETY_DOOR_BIT  5  		//  D5
+	#define CYCLE_START_BIT  6  		//  D6
+	#define CONTROL_INT       PCIE1  // Pin change interrupt enable pin
+	#define CONTROL_INT_vect  PCINT1_vect
+	#define CONTROL_PCMSK     PCMSK1 // Pin change interrupt register	
+	#define CONTROL_MASK ((1<<RESET_BIT)|(1<<FEED_HOLD_BIT)|(1<<CYCLE_START_BIT)|(1<<SAFETY_DOOR_BIT))
 	
 #endif
+
+#ifdef CPU_MAP_CUSTOM_1284p
+
+  // Define serial port pins and interrupt vectors.
+  #define SERIAL_RX     USART0_RX_vect
+  #define SERIAL_UDRE   USART0_UDRE_vect
+
+  #define ENABLE_M7
+
+  // Define step pulse output pins. NOTE: All step bit pins must be on the same port.
+  #define STEP_DDR        DDRD
+  #define STEP_PORT       PORTD
+  #define X_STEP_BIT      2  
+  #define Y_STEP_BIT      3  
+  #define Z_STEP_BIT      4  
+  #define STEP_MASK       ((1<<X_STEP_BIT)|(1<<Y_STEP_BIT)|(1<<Z_STEP_BIT)) // All step bits
+
+  // Define step direction output pins. NOTE: All direction pins must be on the same port.
+  #define DIRECTION_DDR     DDRD
+  #define DIRECTION_PORT    PORTD
+  #define X_DIRECTION_BIT   5  
+  #define Y_DIRECTION_BIT   6 
+  #define Z_DIRECTION_BIT   7 
+  #define DIRECTION_MASK    ((1<<X_DIRECTION_BIT)|(1<<Y_DIRECTION_BIT)|(1<<Z_DIRECTION_BIT)) // All direction bits
+
+  // Define stepper driver enable/disable output pin.
+  #define STEPPERS_DISABLE_DDR    DDRA
+  #define STEPPERS_DISABLE_PORT   PORTA
+  #define STEPPERS_DISABLE_BIT    0 
+  #define STEPPERS_DISABLE_MASK   (1<<STEPPERS_DISABLE_BIT)
+
+  // Define homing/hard limit switch input pins and limit interrupt vectors. 
+  // NOTE: All limit bit pins must be on the same port, but not on a port with other input pins (CONTROL).
+  #define LIMIT_DDR        DDRB
+  #define LIMIT_PIN        PINB
+  #define LIMIT_PORT       PORTB
+  #define X_LIMIT_BIT      1  
+  #define Y_LIMIT_BIT      2  
+  #define Z_LIMIT_BIT      3  
+
+  #define LIMIT_MASK       ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)) // All limit bits
+  #define LIMIT_INT        PCIE0  // Pin change interrupt enable pin
+  #define LIMIT_INT_vect   PCINT0_vect 
+  #define LIMIT_PCMSK      PCMSK0 // Pin change interrupt register
+
+  // Define spindle enable and spindle direction output pins.
+  #define SPINDLE_ENABLE_DDR    DDRA
+  #define SPINDLE_ENABLE_PORT   PORTA
+  // Z Limit pin and spindle PWM/enable pin swapped to access hardware PWM on Pin 11.
+  #define SPINDLE_ENABLE_BIT      1  
+  #define SPINDLE_DIRECTION_DDR   DDRB
+  #define SPINDLE_DIRECTION_PORT  PORTB
+  #define SPINDLE_DIRECTION_BIT   4  
+  
+  
+  // Define flood and mist coolant enable output pins.
+  // NOTE: Uno analog pins 4 and 5 are reserved for an i2c interface, and may be installed at
+  // a later date if flash and memory space allows.
+  #define COOLANT_FLOOD_DDR   DDRA
+  #define COOLANT_FLOOD_PORT  PORTA
+  #define COOLANT_FLOOD_BIT   2  
+  #define COOLANT_MIST_DDR    DDRA
+  #define COOLANT_MIST_PORT   PORTA
+  #define COOLANT_MIST_BIT    3 
+ 
+
+  // Define user-control controls (cycle start, reset, feed hold) input pins.
+  // NOTE: All CONTROLs pins must be on the same port and not on a port with other input pins (limits).
+  #define CONTROL_DDR       DDRC
+  #define CONTROL_PIN       PINC
+  #define CONTROL_PORT      PORTC
+  #define RESET_BIT         3  
+  #define FEED_HOLD_BIT     4  
+  #define CYCLE_START_BIT   2  
+  #define SAFETY_DOOR_BIT   4  //  NOTE: Safety door is shared with feed hold. Enabled by config define.
+  #define CONTROL_INT       PCIE1  // Pin change interrupt enable pin
+  #define CONTROL_INT_vect  PCINT1_vect
+  #define CONTROL_PCMSK     PCMSK1 // Pin change interrupt register
+  #define CONTROL_MASK ((1<<RESET_BIT)|(1<<FEED_HOLD_BIT)|(1<<CYCLE_START_BIT)|(1<<SAFETY_DOOR_BIT))
+  
+  // Define probe switch input pin.
+  #define PROBE_DDR       DDRC
+  #define PROBE_PIN       PINC
+  #define PROBE_PORT      PORTC
+  #define PROBE_BIT       7 
+  #define PROBE_MASK      (1<<PROBE_BIT)
+
+ 
+#endif
+
+
 //----------------------------------------------------------------------------------------
 
 /* 
