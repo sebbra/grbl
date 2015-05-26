@@ -429,6 +429,14 @@
   #define PROBE_BIT       7 
   #define PROBE_MASK      (1<<PROBE_BIT)
 
+  // Define SPI-Interface
+  #define SPI_DDR		DDRB
+  #define SPI_PIN		PINB
+  #define SPI_PORT		PORTB
+  #define SPI_MOSI		5
+  #define SPI_MISO		6
+  #define SPI_CLK		7
+  #define SPI_SS		4
  
 #endif
 
