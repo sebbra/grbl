@@ -73,12 +73,12 @@
   #define LIMIT_PCMSK      PCMSK0 // Pin change interrupt register
 
   // Define spindle enable and spindle direction output pins.
-  #define SPINDLE_ENABLE_DDR    DDRA
-  #define SPINDLE_ENABLE_PORT   PORTA
-  // Z Limit pin and spindle PWM/enable pin swapped to access hardware PWM on Pin 11.
+  #define SPINDLE_ENABLE_DDR      DDRA
+  #define SPINDLE_ENABLE_PORT     PORTA
   #define SPINDLE_ENABLE_BIT      1  
-  #define SPINDLE_DIRECTION_DDR   DDRB
-  #define SPINDLE_DIRECTION_PORT  PORTB
+  
+  #define SPINDLE_DIRECTION_DDR   DDRA
+  #define SPINDLE_DIRECTION_PORT  PORTA
   #define SPINDLE_DIRECTION_BIT   4  
   
   
@@ -88,6 +88,7 @@
   #define COOLANT_FLOOD_DDR   DDRA
   #define COOLANT_FLOOD_PORT  PORTA
   #define COOLANT_FLOOD_BIT   2  
+  
   #define COOLANT_MIST_DDR    DDRA
   #define COOLANT_MIST_PORT   PORTA
   #define COOLANT_MIST_BIT    3 
@@ -122,4 +123,4 @@
   #define SPI_MISO		6
   #define SPI_CLK		7
   #define SPI_SS		4
- 
+

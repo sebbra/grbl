@@ -25,14 +25,14 @@
 
 void spi_init();
 
-inline static uint8_t transfer(uint8_t data);
+inline uint8_t spi_transfer(uint8_t data);
 
 
-inline static void spi_disable();
+inline void spi_disable();
 
-inline static void spi_enable();
+inline void spi_enable();
 
-inline static void spi_setClockDivider(uint8_t clockDiv);
+inline void spi_setClockDivider(uint8_t clockDiv);
 
 
 

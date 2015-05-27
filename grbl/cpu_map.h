@@ -37,7 +37,7 @@
   #include "cpu_map/cpu_map_atmega2560.h"
 #endif
 
-#ifdef CPU_MAP_ATMEGA1284P // 
+#ifdef CPU_MAP_CUSTOM_1284p // 
   #include "cpu_map/cpu_map_atmega1284p.h"
 #endif
 

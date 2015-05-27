@@ -59,6 +59,8 @@
 #include "spindle_control.h"
 #include "stepper.h"
 #include "spi.h"
+#include "l6474.h"
+
 
 
 #endif

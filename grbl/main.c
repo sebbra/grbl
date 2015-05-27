@@ -35,13 +35,16 @@ int main(void)
   system_init();   // Configure pinout pins and pin-change interrupt
 
   #ifdef CPU_MAP_CUSTOM_1284p
-	spi_init();
+  	spi_init();
+    L6474_init(1);
+    L6474_CmdEnable(0);
   #endif
   
   memset(&sys, 0, sizeof(sys));  // Clear all system variables
   sys.abort = true;   // Set abort to complete initialization
   sei(); // Enable interrupts
 
+  
   // Check for power-up and set system alarm if homing is enabled to force homing cycle
   // by setting Grbl's alarm state. Alarm locks out all g-code commands, including the
   // startup scripts, but allows access to settings and internal commands. Only a homing

@@ -30,8 +30,8 @@ void spi_init()
 		SPCR |= (1 << MSTR);
 		SPCR |= (1 << SPE);
 
-		SPCR |=  (SPI_MODE0 & SPI_MODE_MASK);
-		spi_setClockDivider(SPI_CLOCK_DIV8);
+		SPCR |=  (SPI_MODE3 & SPI_MODE_MASK);
+		spi_setClockDivider(SPI_CLOCK_DIV16);
 			
 		// Set direction register for SCK and MOSI pin.
 		// MISO pin automatically overrides to INPUT.
@@ -41,12 +41,12 @@ void spi_init()
 		// http://code.google.com/p/arduino/issues/detail?id=888
 	  	SPI_DDR |= (1 << SPI_MOSI);
 		SPI_DDR |= (1 << SPI_CLK);
-
+		asm volatile("nop");
 
 }
 
 
-inline static uint8_t transfer(uint8_t data) {
+inline uint8_t spi_transfer(uint8_t data) {
   SPDR = data;
   asm volatile("nop");
   while (!(SPSR & (1 << SPIF))) ; // wait
@@ -54,19 +54,23 @@ inline static uint8_t transfer(uint8_t data) {
 }
 
 
-inline static void spi_enable()
+inline void spi_enable()
 {
   SPI_PORT &= ~(1 << SPI_SS);
+  delay_us(1);
 }
 
 
-inline static void spi_disable()
+inline void spi_disable()
 
 {
+   delay_us(1);
    SPI_PORT |= (1 << SPI_SS);
+   delay_us(1);
+
 }
 
-inline static void spi_setClockDivider(uint8_t clockDiv) {
+inline void spi_setClockDivider(uint8_t clockDiv) {
   SPCR = (SPCR & ~SPI_CLOCK_MASK) | (clockDiv & SPI_CLOCK_MASK);
   SPSR = (SPSR & ~SPI_2XCLOCK_MASK) | ((clockDiv >> 2) & SPI_2XCLOCK_MASK);
 }
@@ -75,4 +79,6 @@ inline static void spi_setClockDivider(uint8_t clockDiv) {
 
 
 #endif
+
+
 
