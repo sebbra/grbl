@@ -71,6 +71,20 @@ void L6474_CmdDisable(uint8_t shieldId)
 }
 
 /******************************************************//**
+ * @brief  Issue the Disable command to all the L6474
+ * @retval None
+ **********************************************************/
+void L6474_CmdDisableAll()
+{
+	uint8_t shieldId = 0;
+    for (shieldId = 0; shieldId < numberOfShields; shieldId++)
+    {
+		L6474_SendCommand(shieldId, L6474_DISABLE);
+    }
+}
+
+
+/******************************************************//**
  * @brief  Issues the Enable command to the L6474 of the specified shield
  * @param[in] shieldId (from 0 to 2)
  * @retval None
@@ -79,6 +93,20 @@ void L6474_CmdEnable(uint8_t shieldId)
 {
   L6474_SendCommand(shieldId, L6474_ENABLE);
 }
+
+/******************************************************//**
+ * @brief  Issues the Enable command to all the L6474
+ * @retval None
+ **********************************************************/
+void L6474_CmdEnableAll()
+{
+  	uint8_t shieldId = 0;
+    for (shieldId = 0; shieldId < numberOfShields; shieldId++)
+    {
+		L6474_SendCommand(shieldId, L6474_ENABLE);
+    }
+}
+
 
 /******************************************************//**
  * @brief  Issues the GetParam command to the L6474 of the specified shield
@@ -414,6 +442,39 @@ void L6474_SetRegisterToPredefinedValues(uint8_t shieldId)
                         (uint16_t)L6474_CONF_PARAM_SR_SHIELD_2 |
                         (uint16_t)L6474_CONF_PARAM_TOFF_SHIELD_2);
       break;
+	  case 3:
+		L6474_CmdSetParam(shieldId,
+						  L6474_TVAL,
+						  L6474_Tval_Current_to_Par(L6474_CONF_PARAM_TVAL_SHIELD_3));
+		L6474_CmdSetParam(shieldId,
+						  L6474_T_FAST,
+						  (uint8_t)L6474_CONF_PARAM_TOFF_FAST_SHIELD_3 |
+						  (uint8_t)L6474_CONF_PARAM_FAST_STEP_SHIELD_3);
+		L6474_CmdSetParam(shieldId,
+						  L6474_TON_MIN,
+						  L6474_Tmin_Time_to_Par(L6474_CONF_PARAM_TON_MIN_SHIELD_3));
+		L6474_CmdSetParam(shieldId,
+						  L6474_TOFF_MIN,
+						  L6474_Tmin_Time_to_Par(L6474_CONF_PARAM_TOFF_MIN_SHIELD_3));
+		L6474_CmdSetParam(shieldId,
+						  L6474_OCD_TH,
+						  L6474_CONF_PARAM_OCD_TH_SHIELD_3);
+		L6474_CmdSetParam(shieldId,
+						  L6474_STEP_MODE,
+						  (uint8_t)L6474_CONF_PARAM_STEP_SEL_SHIELD_3 |
+						  (uint8_t)L6474_CONF_PARAM_SYNC_SEL_SHIELD_3);
+		L6474_CmdSetParam(shieldId,
+						  L6474_ALARM_EN,
+						  L6474_CONF_PARAM_ALARM_EN_SHIELD_3);
+		L6474_CmdSetParam(shieldId,
+						  L6474_CONFIG,
+						  (uint16_t)L6474_CONF_PARAM_CLOCK_SETTING_SHIELD_3 |
+						  (uint16_t)L6474_CONF_PARAM_TQ_REG_SHIELD_3 |
+						  (uint16_t)L6474_CONF_PARAM_OC_SD_SHIELD_3 |
+						  (uint16_t)L6474_CONF_PARAM_SR_SHIELD_3 |
+						  (uint16_t)L6474_CONF_PARAM_TOFF_SHIELD_3);
+		break;
+
     default: ;
   }
 }

@@ -36,8 +36,8 @@ int main(void)
 
   #ifdef CPU_MAP_CUSTOM_1284p
   	spi_init();
-    L6474_init(1);
-    L6474_CmdEnable(0);
+    L6474_init(4);
+    L6474_CmdEnableAll();
   #endif
   
   memset(&sys, 0, sizeof(sys));  // Clear all system variables

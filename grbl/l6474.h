@@ -274,19 +274,19 @@ typedef enum {
 
 
 	
-    void L6474_init(uint8_t nbShields);                        //Start the L6474 library
-    
-
+    void L6474_init(uint8_t nbShields);                        //Start the L6474 library    
+	void L6474_CmdDisableAll();
     void L6474_CmdDisable(uint8_t shieldId);              //Send the L6474_DISABLE command
+    void L6474_CmdEnableAll();
     void L6474_CmdEnable(uint8_t shieldId);               //Send the L6474_ENABLE command
-    uint32_t L6474_CmdGetParam(uint8_t shieldId,          //Send the L6474_GET_PARAM command
+uint32_t L6474_CmdGetParam(uint8_t shieldId,          //Send the L6474_GET_PARAM command
                                  L6474_Registers_t param);
-    uint16_t L6474_CmdGetStatus(uint8_t shieldId);        // Send the L6474_GET_STATUS command
+uint16_t L6474_CmdGetStatus(uint8_t shieldId);        // Send the L6474_GET_STATUS command
     void L6474_CmdNop(uint8_t shieldId);                  //Send the L6474_NOP command
     void L6474_CmdSetParam(uint8_t shieldId,              //Send the L6474_SET_PARAM command
                              L6474_Registers_t param,       
                              uint32_t value);
-    uint16_t L6474_ReadStatusRegister(uint8_t shieldId);  // Read the L6474_STATUS register without
+uint16_t L6474_ReadStatusRegister(uint8_t shieldId);  // Read the L6474_STATUS register without
                                                     // clearing the flags
    
     void L6474_SelectStepMode(uint8_t shieldId,           // Step mode selection
@@ -298,8 +298,8 @@ typedef enum {
     void L6474_WriteBytes(uint8_t *pByteToTransmit, uint8_t *pReceivedByte);    
 
 
-    uint8_t L6474_Tval_Current_to_Par(double Tval);
-    uint8_t L6474_Tmin_Time_to_Par(double Tmin);
+uint8_t L6474_Tval_Current_to_Par(double Tval);
+uint8_t L6474_Tmin_Time_to_Par(double Tmin);
 
 
     
