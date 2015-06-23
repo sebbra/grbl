@@ -119,13 +119,13 @@
 													
 
 /// Step selection settings for shield 0 (STEP_SEL field of STEP_MODE register)
-#define L6474_CONF_PARAM_STEP_SEL_SHIELD_0  (L6474_STEP_SEL_1_16)
+#define L6474_CONF_PARAM_STEP_SEL_SHIELD_0  (L6474_STEP_SEL_1)
 /// Step selection settings for shield 1 (STEP_SEL field of STEP_MODE register)
-#define L6474_CONF_PARAM_STEP_SEL_SHIELD_1  (L6474_STEP_SEL_1_16)
+#define L6474_CONF_PARAM_STEP_SEL_SHIELD_1  (L6474_STEP_SEL_1)
 /// Step selection settings for shield 2 (STEP_SEL field of STEP_MODE register)
-#define L6474_CONF_PARAM_STEP_SEL_SHIELD_2  (L6474_STEP_SEL_1_16)
+#define L6474_CONF_PARAM_STEP_SEL_SHIELD_2  (L6474_STEP_SEL_1)
 /// Step selection settings for shield 3 (STEP_SEL field of STEP_MODE register)
-#define L6474_CONF_PARAM_STEP_SEL_SHIELD_3  (L6474_STEP_SEL_1_16)
+#define L6474_CONF_PARAM_STEP_SEL_SHIELD_3  (L6474_STEP_SEL_1)
 
 
 /// Synch. selection settings for shield 0 (SYNC_SEL field of STEP_MODE register)
