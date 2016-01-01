@@ -2,8 +2,13 @@
 
 
 ***
+_** 
+This is my Fork of [grbl](https://github.com/grbl/grbl). 
+It is based on the eddge branche and uses [L6474 Stepper-drivers from ST](http://www.st.com/web/catalog/sense_power/FM142/CL851/SC1794/SS1498/LN1724/PF252762).
+I am using 4 [X-NUCLEO-IHM01A1](http://www.st.com/web/en/catalog/tools/PF260715) boards and a custem board with a Atmega1284p controller.
 
-_**This is the development branch for Grbl v1.0's upcoming release. In general, the new features here are beta, so use with caution. If you'd like to help, please report any bugs or oddities that you find! Thanks!**_
+
+**_
 
 ***
 
@@ -25,46 +30,6 @@ Grbl includes full acceleration management with look ahead. That means the contr
 
 ***
 
-### Official Supporters of the Grbl CNC Project
-![Official Supporters](https://dl.dropboxusercontent.com/u/2221997/Contributors.png)
-
-
-***
-
-##Update Summary for v1.0c
-- **IMPORTANT:** Your EEPROM will be wiped and restored with new settings. This is due to the addition of two new spindle speed '$' settings.
-
-- Altered limit pin status reports from `Lim:000` to `Pin:000|0|0000`, where the `|` delimiters separate the new probe state and control pin states. Each new field may be disabled by the `$10` Grbl setting. NOTE: Commenting `REPORT_ALL_PIN_STATES` in config.h reverts to old `Lim:` reports, if needed.
-
-- New safety door parking motion as a compile-option. Grbl will retract, disable the spindle/coolant, and park near Z max. When resumed, it will perform these task in reverse order and continue the program. Highly configurable. See config.h for details.
-
-- New '$' Grbl settings for max and min spindle rpm. Allows for tweaking the PWM output to more closely match true spindle rpm. When max rpm is set to zero or less than min rpm, the PWM pin D11 will act like a simple enable on/off output.
-
-- Updated G28 and G30 behavior from NIST to LinuxCNC g-code description. In short, if a intermediate motion is specified, only the axes specified will move to the stored coordinates, not all axes as before.
-
-- A few bug fixes and lots of refactoring to make the code more efficient and flexible.
-
-
--
-
-``` 
-List of Supported G-Codes in Grbl v0.9 Master:
-  - Non-Modal Commands: G4, G10L2, G10L20, G28, G30, G28.1, G30.1, G53, G92, G92.1
-  - Motion Modes: G0, G1, G2, G3, G38.2, G38.3, G38.4, G38.5, G80
-  - Feed Rate Modes: G93, G94
-  - Unit Modes: G20, G21
-  - Distance Modes: G90, G91
-  - Arc IJK Distance Modes: G91.1
-  - Plane Select Modes: G17, G18, G19
-  - Tool Length Offset Modes: G43.1, G49
-  - Cutter Compensation Modes: G40
-  - Coordinate System Modes: G54, G55, G56, G57, G58, G59
-  - Control Modes: G61
-  - Program Flow: M0, M1, M2, M30*
-  - Coolant Control: M7*, M8, M9
-  - Spindle Control: M3, M4, M5
-  - Valid Non-Command Words: F, I, J, K, L, N, P, R, S, T, X, Y, Z
-```
 
 -------------
 Grbl is an open-source project and fueled by the free-time of our intrepid administrators and altruistic users. If you'd like to donate, all proceeds will be used to help fund supporting hardware and testing equipment. Thank you!
